@@ -18,22 +18,27 @@ header {
 }
 
 
+
 .video-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 across */
   gap: 16px;
-  align-items: start;
+  align-items: stretch; /* make cards stretch to match row height */
 }
 
 .video-card {
-  display: block;
+  display: grid;
+  grid-template-rows: auto 1fr; /* image then title */
   text-decoration: none;
   color: inherit;
+  min-width: 0;
 }
 
+/* Force all thumbnails to the same shape */
 .video-card img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;  /* uniform YouTube-like ratio */
+  object-fit: cover;     /* crop nicely instead of stretching */
   border-radius: 10px;
   display: block;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -44,23 +49,22 @@ header {
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
 }
 
+/* Make titles line up by reserving consistent space */
 .video-title {
   display: block;
   margin-top: 8px;
   font-size: 0.95rem;
   line-height: 1.2;
   opacity: 0.9;
+
+  /* Reserve room so cards stay even even if one title wraps */
+  min-height: calc(1.2em * 2); /* ~2 lines of text */
 }
 
-/* Responsive: stack nicely on smaller screens */
-@media (max-width: 900px) {
-  .video-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* Responsive */
 @media (max-width: 520px) {
   .video-grid { grid-template-columns: 1fr; }
 }
-``
-
 
 .lead { color: var(--muted); }
 
