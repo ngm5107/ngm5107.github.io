@@ -17,6 +17,51 @@ header {
   margin-bottom: 2rem;
 }
 
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 across */
+  gap: 16px;
+  align-items: start;
+}
+
+.video-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.video-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.video-card:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+.video-title {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+/* Responsive: stack nicely on smaller screens */
+@media (max-width: 900px) {
+  .video-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+``
+
+
 .lead { color: var(--muted); }
 
 button {
